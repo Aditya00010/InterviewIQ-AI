@@ -1,21 +1,90 @@
-<<<<<<< HEAD
-# React + Vite
+# InterviewIQ-AI 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered mock interview and candidate evaluation platform built using the MERN stack and Gemini/OpenAI APIs. The platform helps users prepare for technical and HR interviews through AI-generated questions, real-time feedback, and performance analysis.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 🔐 User Authentication & Authorization
+- 🤖 AI-Generated Interview Questions
+- 📄 Resume-Based Interview Generation
+- 🧠 AI Feedback & Performance Analysis
+- 📊 Candidate Evaluation Dashboard
+- 🎯 Role-Based Mock Interviews
+- ☁️ Full Stack MERN Architecture
+- 📱 Responsive Modern UI
+- 🔒 Secure JWT Authentication
+- ⚡ Real-Time Interview Workflow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# InterviewIQ-AI
-AI-powered mock interview and candidate evaluation platform built using MERN stack and Gemini/OpenAI APIs, featuring role-based interview generation, AI feedback analysis, authentication, and performance tracking.
->>>>>>> 7f9e12ce9c0fa990150611c48e67c59434fd9c19
+### Frontend
+- React.js
+- Vite
+- SCSS
+- Context API
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+
+### AI Integration
+- Gemini API / OpenAI API
+
+---
+
+## 📂 Project Structure
+
+```bash
+InterviewIQ-AI/
+│
+├── Backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── services/
+│   │
+│   ├── package.json
+│   └── server.js
+│
+├── Frontend/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
+
+⚙️ Installation & Setup
+1️⃣ Clone Repository
+git clone https://github.com/Aditya00010/InterviewIQ-AI.git
+2️⃣ Backend Setup
+cd Backend
+npm install
+npm run dev
+3️⃣ Frontend Setup
+cd Frontend
+npm install
+npm run dev
+🔑 Environment Variables
+
+Create a .env file inside the Backend directory.
+
+PORT=5000
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+OPENAI_API_KEY=your_api_key
+
+
+
+👨‍💻 Author
+Aditya Yadav
+GitHub: https://github.com/Aditya00010
