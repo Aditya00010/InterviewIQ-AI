@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -14,3 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=======
+# InterviewIQ-AI
+AI-powered mock interview and candidate evaluation platform built using MERN stack and Gemini/OpenAI APIs, featuring role-based interview generation, AI feedback analysis, authentication, and performance tracking.
+>>>>>>> 7f9e12ce9c0fa990150611c48e67c59434fd9c19
