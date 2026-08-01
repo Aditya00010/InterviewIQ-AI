@@ -485,37 +485,9 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 - **Stateless Authorization Patterns:** Implemented cookie-based JWT tokens combined with database token blacklisting to secure routes while maintaining state.
 - **PDF Extraction and Compilation:** Built parsing pipelines using Multer memory buffers and Puppeteer Chromium PDF rendering.
 
----
-
-## 📝 Resume Bullet Points
-
-- **AI-Powered Mock Interview Platform:** Built a MERN stack web app that parses candidate resumes using `pdf-parse` and matches them against target job descriptions.
-- **Enforced JSON Schemas:** Leveraged `zod` and Google's Gemini SDK (`responseSchema`) to enforce strict JSON output configurations, eliminating response parsing errors.
-- **Automated Resume Compiler:** Implemented a backend pipeline using Puppeteer to dynamically compile custom job-tailored HTML layouts into downloadable PDF documents.
-- **Secure Authentication Guard:** Configured cookie-based JWT authentication paired with a token-blacklist logout registry in MongoDB to prevent token reuse.
-
----
-
-## 🎙️ Interview Pitch (5-Minute Speakable Guide)
-
-> *"In my project, **InterviewIQ-AI**, I wanted to build an automated, personalized career coach that helps candidates identify skill gaps and generate structured preparation strategies for target job descriptions.
->
-> I built the frontend with **React**, using a clean, dark-themed dashboard. The backend is built with **Node.js and Express**, and connects to a **MongoDB** database.
->
-> The core workflow starts when a user uploads their resume. The backend intercepts the file with **Multer** and parses it directly from memory using **pdf-parse**. It then builds a custom prompt that is sent to the **Google Gemini API**. To ensure the AI responses are reliable, I enforced strict schemas using **Zod** and Gemini's native `responseSchema` config. This guarantees the AI returns structured JSON containing matching scores, technical/behavioral mock questions, intention analysis, and custom roadmaps, which are stored in the database.
-> 
-> I also built a custom resume compiler. It prompts Gemini to write a targeted HTML resume template customized to the job description, and uses **Puppeteer** to launch a headless browser and render that HTML into a clean, downloadable PDF.
->
-> For security, I set up **JWT-based authentication** stored in secure, HTTP-only cookies. To secure the logout process, I added a token-blacklist collection in MongoDB so tokens are flagged as invalid upon logout.
->
-> One interesting challenge I ran into was a React HMR unmounting issue. Changing the file state caused React to unmount the adjacent input node, resetting the selected file value. I solved this by adding stable keys to the input element.
->
-> Overall, this project helped me understand structured AI output modeling, backend file manipulation, and secure authentication flows."*
-
----
 
 ## 📄 License & Contact
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
 
-**Aditya** - [GitHub Profile](https://github.com/Aditya00010) - Aditya00010@gmail.com (Placeholder)
+**Aditya** - [GitHub Profile](https://github.com/Aditya00010) - Aditya00010@gmail.com 
