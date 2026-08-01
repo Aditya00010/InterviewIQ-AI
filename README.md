@@ -19,24 +19,27 @@
 ## 📌 Table of Contents
 
 1. [Project Overview](#-project-overview)
-2. [Key Features](#-key-features)
-3. [Tech Stack](#-tech-stack)
-4. [System Architecture](#-system-architecture)
-5. [Complete Workflow](#-complete-workflow)
-6. [Folder Structure](#-folder-structure)
-7. [Database Design](#-database-design)
-8. [Authentication Flow](#-authentication-flow)
-9. [AI Workflow & Structured Outputs](#-ai-workflow--structured-outputs)
-10. [Tailored ATS Resume Generation](#-tailored-ats-resume-generation)
-11. [API Documentation](#-api-documentation)
-12. [Installation & Setup](#-installation--setup)
-13. [Environment Variables](#-environment-variables)
-14. [Screenshots](#-screenshots)
-15. [Challenges Faced & Solutions](#-challenges-faced--solutions)
-16. [Key Learnings](#-key-learnings)
-17. [Resume Bullet Points](#-resume-bullet-points)
-18. [Interview Pitch (5-Minute Speakable guide)](#-interview-pitch-5-minute-speakable-guide)
-19. [License & Contact](#-license--contact)
+2. [Project Metrics & Highlights](#-project-metrics--highlights)
+3. [Architecture Diagram](#-architecture-diagram)
+4. [Application Preview](#-application-preview)
+5. [Key Features](#-key-features)
+6. [Core Modules](#-core-modules)
+7. [Tech Stack](#-tech-stack)
+8. [System Architecture](#-system-architecture)
+9. [Complete Workflow](#-complete-workflow)
+10. [Folder Structure](#-folder-structure)
+11. [Database Design](#-database-design)
+12. [Authentication Flow](#-authentication-flow)
+13. [AI Workflow & Structured Outputs](#-ai-workflow--structured-outputs)
+14. [Tailored ATS Resume Generation](#-tailored-ats-resume-generation)
+15. [API Documentation](#-api-documentation)
+16. [Installation & Setup](#-installation--setup)
+17. [Environment Variables](#-environment-variables)
+18. [Challenges Faced & Solutions](#-challenges-faced--solutions)
+19. [Key Learnings](#-key-learnings)
+20. [Resume Bullet Points](#-resume-bullet-points)
+21. [Interview Pitch (5-Minute Speakable guide)](#-interview-pitch-5-minute-speakable-guide)
+22. [License & Contact](#-license--contact)
 
 ---
 
@@ -50,13 +53,75 @@ Traditional job seekers struggle to align their resumes and preparation strategi
 - Evaluates candidate profiles against target job descriptions.
 - Highlights core **skills gaps** and assigns them impact severities.
 - Generates tailored, structured technical and behavioral mock interview questions.
-- Creates day-by-wise structured study roadmaps.
+- Creates day-by-day structured study roadmaps.
 - Uses AI to tailor their resume and compile it directly into an ATS-friendly, clean PDF using headless Chromium.
 
 ### Target Users
 - **Job Seekers / Students** looking for a customized, data-driven interview preparation roadmap.
 - **Bootcamp Graduates** wanting to practice role-specific behavioral/technical prompts.
 - **Career Switchers** looking to quickly bridge skill gaps and tailor resumes for target roles.
+
+---
+
+## 📊 Project Metrics & Highlights
+
+### Core Metrics
+| Metric | Value |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Sass, Context API |
+| **Backend** | Node.js, Express.js |
+| **AI Model** | Google Gemini (1.5 Flash / 2.0 Flash) |
+| **Database** | MongoDB + Mongoose ODM |
+| **Authentication** | JWT (JsonWebTokens) + Secure Cookies |
+| **PDF Engine** | Puppeteer (Headless Chromium) |
+| **API Style** | REST API |
+| **Architecture** | MERN + AI Structured Output Layer |
+
+### Project Highlights
+| Feature | Status |
+| :--- | :---: |
+| **Authentication & Protection** | ✅ |
+| **PDF Resume Parsing** | ✅ |
+| **Gemini AI Integration** | ✅ |
+| **Strict Zod Structured Output** | ✅ |
+| **ATS Resume Generator** | ✅ |
+| **Puppeteer PDF Rendering** | ✅ |
+| **MongoDB History & Session Store** | ✅ |
+
+---
+
+## 🗺️ Architecture Diagram
+
+This visual representation outlines how data flows securely from the user browser through the authentication middleware, is parsed, structured via Zod, analyzed by Gemini, saved in MongoDB, and compiled to PDF.
+
+```mermaid
+graph TD
+    A[User Browser] -->|1. Interacts / Submits Form| B(React Frontend SPA)
+    B -->|2. Secure API Request with JWT Cookie| C(Express Backend Server)
+    C -->|3. Route Protection Guard| D[Auth Middleware & Blacklist Verification]
+    D -->|4. Read/Write Session & Reports| E[(MongoDB Database)]
+    C -->|5. Extract Uploaded File text| F[PDF-Parse Parser]
+    C -->|6. strict JSON Schema Request| G[Google Gemini API Engine]
+    C -->|7. Tailor HTML Resume Layout| H[Puppeteer Headless Chromium]
+    H -->|8. Generate PDF binary buffer| C
+    C -->|9. Send PDF Download File| B
+```
+
+---
+
+## 📷 Application Preview
+
+### 1. Login Page
+*Secure entry portal using HTTP-only cookie validation and real-time failure banners.*
+![Login Page](Screenshots/Login%20page.png)
+
+### 2. Main Dashboard & Report Generator
+*Dynamic dropzone with drag-and-drop file state trackers, dynamic character counter, and custom loaders.*
+![Dashboard Page](Screenshots/Dashboard.png)
+
+### 3. Study Roadmap & Interview Plan
+*Match Score Ring, identified Skill Gaps, Technical/Behavioral Question accordion cards, and Day-wise roadmap.*
+![Roadmap Page](Screenshots/Roadmap.png)
 
 ---
 
@@ -72,33 +137,48 @@ Traditional job seekers struggle to align their resumes and preparation strategi
 
 ---
 
-## 💻 Tech Stack
+## 🧩 Core Modules
 
-### Frontend
-- **React (v19):** Declarative component-based UI.
-- **React Router (v7):** Fast routing and route protection.
-- **Sass (SCSS):** Structured CSS layout with flexible variables.
-- **Axios:** CORS-enabled API client.
+```text
+┌─────────────────────────┐      ┌─────────────────────────┐      ┌─────────────────────────┐
+│  Authentication Module  ├─────►│Interview Analysis Module├─────►│    Dashboard Module     │
+│(Register, Login, Cookies)│      │(Multer, PDF-Parse, GenAI)│      │ (Score, QA Accordions)  │
+└─────────────────────────┘      └────────────┬────────────┘      └─────────────────────────┘
+                                              │
+                                              ▼
+┌─────────────────────────┐      ┌─────────────────────────┐
+│     History Module      │◄─────┤Resume Generator Module  │
+│ (Past Plan Collections)  │      │  (Gemini + Puppeteer)   │
+└─────────────────────────┘      └─────────────────────────┘
+```
 
-### Backend
-- **Node.js & Express:** Lightweight, high-performance web server.
-- **Multer:** Handles multipart file uploads (memory buffers).
-- **PDF-Parse:** Extracts text content from PDF uploads.
-- **Puppeteer:** Headless browser automation for high-precision HTML-to-PDF rendering.
-
-### Database & Security
-- **MongoDB & Mongoose:** Document-based storage for interview histories and users.
-- **JWT (JsonWebToken):** Secure stateless authorization tokens.
-- **Cookie-Parser:** Safe retrieval of secure token cookies.
-- **BcryptJS:** Hashing algorithms for secure user credentials.
-
-### Artificial Intelligence
-- **Google GenAI SDK (`@google/genai`):** Communicates with Google's Gemini models.
-- **Zod & Zod-to-JSON-Schema:** Enforces strict response schemas to prevent AI response drift.
+1. **Authentication Module:** Manages session cookies, bcrypt password hashing, token generation, and secure routes verification.
+2. **Interview Analysis Module:** Uploads file streams into memory, extracts raw text content, combines inputs with target job configurations, and streams prompts into the Google GenAI compiler.
+3. **Dashboard Module:** Renders the customized report, displaying match score meters, question accordions, and day-wise roadmap grids.
+4. **Resume Generator Module:** Leverages Gemini to craft resume markup tailored to the target job description and runs headless Chromium (Puppeteer) to render high-fidelity, ATS-friendly PDF downloads.
+5. **History Module:** Pulls past report profiles directly from MongoDB, allowing users to track and load their progress histories.
 
 ---
 
-## 🏗️ System Architecture
+## 💻 Tech Stack
+
+| Category | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, React Router v7, Sass (SCSS), Context API, Axios |
+| **Backend** | Node.js, Express.js |
+| **AI Integration** | Google GenAI SDK (`@google/genai`) |
+| **Database** | MongoDB, Mongoose ODM |
+| **Authentication** | JWT (JsonWebTokens), Cookie-Parser, BcryptJS |
+| **PDF Extraction** | Multer (Memory Storage), PDF-Parse |
+| **PDF Compiler** | Puppeteer (Headless Chromium) |
+| **Validation** | Zod, Zod-to-JSON-Schema |
+
+---
+
+## System Architecture
+
+<details>
+<summary>🔍 View ASCII Architecture Diagram</summary>
 
 ```text
        ┌────────────────────────┐
@@ -122,21 +202,24 @@ Traditional job seekers struggle to align their resumes and preparation strategi
        │  (Structured JSON)   │
        └──────────────────────┘
 ```
-
-The React frontend handles user authentication and input details. The Express backend handles JWT cookie verification, database CRUD operations, PDF text extraction, Puppeteer rendering, and structures user prompts to feed into the Gemini API.
+</details>
 
 ---
 
 ## 🔄 Complete Workflow
 
-```text
-[User Access] ──► [Sign Up/Login] ──► [Target Job Details + Upload Resume (or Self-Desc)]
-                                                    │
-                                                    ▼
-[Download PDF] ◄── [Puppeteer PDF Compiler] ◄── [Tailored Resume HTML] ◄── [Extract PDF Text]
-      ▲                                                                          │
-      │                                                                          ▼
-[Dashboard UI] ◄─────── [Save MongoDB Document] ◄────── [Structured JSON] ◄── [Gemini AI Engine]
+```mermaid
+graph TD
+    A[User launches website] --> B[Register / Login]
+    B --> C[Paste Job Description & upload Resume/write Self-Description]
+    C --> D[System parses PDF resume text from memory]
+    D --> E[Gemini API processes structured data based on strict schema]
+    E --> F[Database saves the generated report]
+    F --> G[Interactive dashboard displays Match Score, QA, & Roadmap]
+    G --> H[User requests tailored resume]
+    H --> I[Gemini writes custom job-tailored HTML]
+    I --> J[Puppeteer compiles HTML page into professional PDF]
+    J --> K[User downloads tailored resume PDF]
 ```
 
 1. **User Auth:** User registers/logs in. JWT token is stored inside a secure cookie.
@@ -213,17 +296,33 @@ Stores detailed analysis records generated by Gemini.
 
 ## 🔒 Authentication Flow
 
-```text
-[Register/Login Request] ──► [Hash Check / User Create] ──► [Sign JWT] ──► [Store in HTTP-only Cookie]
-                                                                                  │
-                                                                                  ▼
-[API Route Access] ◄── [Allow Next()] ◄── [Token Verified & NOT Blacklisted] ◄── [Auth Middleware]
-```
+Here is the step-by-step sequence detailing how registration, login sessions, cookie transfers, and secure blacklisted logouts take place:
 
-1. **Sign Up/Sign In:** The backend hashes passwords using `bcryptjs` and signs a JSON Web Token containing the user ID.
-2. **Cookie Storage:** The JWT token is returned to the client and stored in a secure cookie.
-3. **Route Protection:** When calling private APIs, `authUser` middleware intercepts the request, decodes the JWT, and verifies it against the `tokenBlacklist` collection in MongoDB.
-4. **Log Out:** The token is cleared from client-side cookies and added to the database `tokenBlacklist` collection to block access if the client attempts to use it again.
+```mermaid
+sequenceDiagram
+    actor User
+    participant Frontend as React Frontend
+    participant Backend as Express Backend
+    participant DB as MongoDB
+    
+    Note over User, Backend: Login / Session Creation Flow
+    User->>Frontend: Enter Credentials (Email & Password)
+    Frontend->>Backend: POST /api/auth/login
+    Backend->>DB: Find User & Verify Hash (Bcrypt)
+    DB-->>Backend: User Verified
+    Backend->>Backend: Sign JWT Token with Secret Key
+    Backend-->>Frontend: Set Cookie Response (HttpOnly, Secure)
+    Frontend->>User: Redirect to User Dashboard (/)
+
+    Note over User, Backend: Session Termination / Logout Flow
+    User->>Frontend: Clicks 'Logout' button
+    Frontend->>Backend: GET /api/auth/logout
+    Backend->>DB: Save current JWT to tokenBlacklists collection
+    DB-->>Backend: Token Saved
+    Backend->>Backend: Clear Token cookie
+    Backend-->>Frontend: Success Response (200)
+    Frontend->>User: Redirect back to Login Page (/login)
+```
 
 ---
 
@@ -257,7 +356,27 @@ const response = await ai.models.generateContent({
 const parsedData = JSON.parse(response.text);
 ```
 
-By specifying `responseMimeType` and `responseSchema` with the converted Zod schema, the model outputs JSON that maps directly to the schema structure, eliminating formatting errors.
+### Complete AI Generation Sequence:
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Frontend as React Frontend
+    participant Backend as Express Backend
+    participant Gemini as Google Gemini API
+    participant DB as MongoDB
+    
+    User->>Frontend: Upload Resume & Input Job Description
+    Frontend->>Backend: POST /api/interview/ (Multipart Form)
+    Backend->>Backend: Extract Text via pdf-parse from file buffer
+    Backend->>Backend: Transpile Zod validation schema to JSON-schema
+    Backend->>Gemini: call generateContent with strict responseSchema config
+    Gemini-->>Backend: Return strict JSON conforming to Zod schema
+    Backend->>DB: Save Report to Database ( interviewreports collection )
+    DB-->>Backend: Report Saved
+    Backend-->>Frontend: Response (201 Created)
+    Frontend->>User: Display score, QAs, and custom day-wise roadmap
+```
 
 ---
 
@@ -340,19 +459,6 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 - `MONGO_URI`: MongoDB connection string.
 - `JWT_SECRET`: Secret key used to sign JSON Web Tokens.
 - `GOOGLE_GENAI_API_KEY`: API key for Google Gemini GenAI services.
-
----
-
-## 📷 Screenshots
-
-### Login Page
-![Login Page](Screenshots/Login%20page.png)
-
-### Dashboard / Generate Strategy
-![Dashboard Page](Screenshots/Dashboard.png)
-
-### Study Roadmap
-![Roadmap Page](Screenshots/Roadmap.png)
 
 ---
 
