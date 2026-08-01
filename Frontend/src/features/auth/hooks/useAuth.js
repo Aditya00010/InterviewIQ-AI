@@ -15,8 +15,11 @@ export const useAuth = () => {
         try {
             const data = await login({ email, password })
             setUser(data.user)
+            return { success: true }
         } catch (err) {
-
+            console.error("Login Error:", err)
+            const errorMsg = err.response?.data?.message || "Login failed. Please check your credentials."
+            return { success: false, error: errorMsg }
         } finally {
             setLoading(false)
         }
@@ -27,8 +30,11 @@ export const useAuth = () => {
         try {
             const data = await register({ username, email, password })
             setUser(data.user)
+            return { success: true }
         } catch (err) {
-
+            console.error("Register Error:", err)
+            const errorMsg = err.response?.data?.message || "Registration failed. Please try again."
+            return { success: false, error: errorMsg }
         } finally {
             setLoading(false)
         }
@@ -37,10 +43,12 @@ export const useAuth = () => {
     const handleLogout = async () => {
         setLoading(true)
         try {
-            const data = await logout()
+            await logout()
             setUser(null)
+            return { success: true }
         } catch (err) {
-
+            console.error("Logout Error:", err)
+            return { success: false, error: "Logout failed." }
         } finally {
             setLoading(false)
         }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../style/interview.scss'
 import { useInterview } from '../hooks/useInterview.js'
 import { useNavigate, useParams } from 'react-router'
+import Header from '../../auth/components/Header'
 
 
 
@@ -73,7 +74,10 @@ const Interview = () => {
     if (loading || !report) {
         return (
             <main className='loading-screen'>
-                <h1>Loading your interview plan...</h1>
+                <div className="loader-container">
+                    <div className="loader-spinner"></div>
+                    <h1>Loading your interview plan...</h1>
+                </div>
             </main>
         )
     }
@@ -84,8 +88,10 @@ const Interview = () => {
 
 
     return (
-        <div className='interview-page'>
-            <div className='interview-layout'>
+        <>
+            <Header />
+            <div className='interview-page'>
+                <div className='interview-layout'>
 
                 {/* ── Left Nav ── */}
                 <nav className='interview-nav'>
@@ -189,6 +195,7 @@ const Interview = () => {
                 </aside>
             </div>
         </div>
+        </>
     )
 }
 
