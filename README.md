@@ -34,12 +34,13 @@
 14. [Tailored ATS Resume Generation](#-tailored-ats-resume-generation)
 15. [API Documentation](#-api-documentation)
 16. [Installation & Setup](#-installation--setup)
-17. [Environment Variables](#-environment-variables)
-18. [Challenges Faced & Solutions](#-challenges-faced--solutions)
-19. [Key Learnings](#-key-learnings)
-20. [Resume Bullet Points](#-resume-bullet-points)
-21. [Interview Pitch (5-Minute Speakable guide)](#-interview-pitch-5-minute-speakable-guide)
-22. [License & Contact](#-license--contact)
+17. [Docker Deployment](#-docker-deployment)
+18. [Environment Variables](#-environment-variables)
+19. [Challenges Faced & Solutions](#-challenges-faced--solutions)
+20. [Key Learnings](#-key-learnings)
+21. [Resume Bullet Points](#-resume-bullet-points)
+22. [Interview Pitch (5-Minute Speakable guide)](#-interview-pitch-5-minute-speakable-guide)
+23. [License & Contact](#-license--contact)
 
 ---
 
@@ -87,6 +88,7 @@ Traditional job seekers struggle to align their resumes and preparation strategi
 | **ATS Resume Generator** | ✅ |
 | **Puppeteer PDF Rendering** | ✅ |
 | **MongoDB History & Session Store** | ✅ |
+| **Docker Containerization** | ✅ |
 
 ---
 
@@ -172,6 +174,7 @@ graph TD
 | **PDF Extraction** | Multer (Memory Storage), PDF-Parse |
 | **PDF Compiler** | Puppeteer (Headless Chromium) |
 | **Validation** | Zod, Zod-to-JSON-Schema |
+| **Containerization** | Docker, Docker Compose, Nginx |
 
 ---
 
@@ -450,6 +453,19 @@ npm install
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## 🐳 Docker Deployment
+
+The application is fully containerized and production-ready using **Docker** and **Docker Compose**:
+- **Multi-Stage Frontend Build**: Runs a React compilation phase using Node, and then hosts the optimized static assets via `nginx:alpine` with Gzip compression enabled.
+- **Nginx Reverse Proxy**: Single ingress point on port `80` that reverse-proxies `/api` requests internally to the Node backend.
+- **Private Backend**: The Node backend container is fully isolated and does not publish port 3000 to the host, protecting it from public internet exposure.
+- **Chrome Sandbox & Puppeteer Execution**: Backend Dockerfile includes native Debian slim system packages to securely run headless Chromium as a non-root `node` user.
+- **Startup Sequencing**: Utilizes Docker health checks to guarantee the frontend container only spins up after the backend database connections report healthy.
+
+For full setup and usage commands, see the detailed [Docker Deployment Guide (README-Docker.md)](README-Docker.md).
 
 ---
 
